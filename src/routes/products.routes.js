@@ -13,7 +13,10 @@ router.get("/products", async (req, res) => {
 router.get("/products/:id", async (req, res) => {
   const producto = await prisma.product.findFirst({
     where:{
-      id: Number(req.params.id)}
+      id: Number(req.params.id)},
+      include:{
+        category: true
+      }
   })
 
   if(!producto){
