@@ -15,6 +15,10 @@ router.get("/products/:id", async (req, res) => {
     where:{
       id: Number(req.params.id)}
   })
+
+  if(!producto){
+    return res.status(404).json({error: "Producto no encontrado"})
+  }
   res.json(producto)
 })
 
@@ -45,5 +49,17 @@ router.post("/products", async (req, res) => {
     res.status(500).json({ error: "Hubo un error al crear el producto." });
   }
 });
+
+//para eliminar un producto
+
+router.delete("/products/:id", async (req, res) => {
+  const productDelete = await prisma.product.delete({
+    where: {
+      id: Number(req.params.id),
+    },
+  })
+  if(!productDelete){ return res.status(404).json({error: "Producto no encontrado"})}
+  res.json(productDelete)
+})
 
 export default router;
