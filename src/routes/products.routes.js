@@ -62,4 +62,16 @@ router.delete("/products/:id", async (req, res) => {
   res.json(productDelete)
 })
 
+//actualizar un producto
+router.put("/products/:id", async (req, res) => {
+  const productUpdate = await prisma.product.update({
+    where:{
+      id: Number(req.params.id)
+    },
+    data: req.body
+  })
+  return res.json(productUpdate)
+})
+
+
 export default router;
