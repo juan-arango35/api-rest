@@ -31,6 +31,17 @@ res.status(500).json({ error: "Hubo un error al crear el producto." });
 });
 
 //para eliminar un producto:
+router.delete("/categories/:id", async(req, res)=>{
+
+  const productoEliminado = await prisma.category.delete({
+    where:{
+      id: Number(req.params.id)
+    }, 
+   
+  })
+  if(!productoEliminado){ return res.status(404).json({error: "Categoria no encontrada"})}
+  res.json(productoEliminado)
+})
 
 
 
