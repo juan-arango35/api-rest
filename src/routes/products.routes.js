@@ -71,7 +71,7 @@ router.put("/products/:id", async (req, res) => {
     where:{
       id: Number(req.params.id)
     },
-    data: req.body
+    data: req.body  // devuelve la data actualizada
   })
   return res.json(productUpdate)
 })

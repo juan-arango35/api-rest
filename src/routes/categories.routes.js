@@ -43,7 +43,16 @@ router.delete("/categories/:id", async(req, res)=>{
   res.json(productoEliminado)
 })
 
-
+//para actualizar una categoria:
+router.put("/categories/:id", async(req, res)=>{
+  const categoriaActualizada = await prisma.category.update({
+    where:{
+      id: Number(req.params.id)
+    },
+    data:req.body
+  })
+  return res.json(categoriaActualizada)
+})
 
 
 export default router;
