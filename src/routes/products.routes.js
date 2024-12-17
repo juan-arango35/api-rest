@@ -25,6 +25,10 @@ router.get("/products/:id", async (req, res) => {
   res.json(producto)
 })
 
+
+
+
+
 //metodo post para crear elementos en nuestra tabla
 router.post("/products", async (req, res) => {
   try {
